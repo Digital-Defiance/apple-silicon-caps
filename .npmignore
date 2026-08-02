@@ -1,0 +1,15 @@
+# Packaging is controlled entirely by the "files" allowlist in package.json.
+#
+# This file is intentionally rules-only-comments. It exists so that npm does
+# not fall back to .gitignore as the ignore source, because .gitignore excludes
+# dist/ and build/ - artifacts the published package depends on.
+#
+# Do not add exclude rules here. The failure mode is documented in
+# @digitaldefiance/node-rs-accelerate: version 0.1.2 published a package that
+# could not be loaded at all, because its .npmignore excluded src/ and build/
+# while dist/ required a native addon from build/ that could not be rebuilt
+# from the tarball either. Express what ships as an allowlist in package.json
+# instead, where omissions are visible in a diff.
+#
+# scripts/verify-pack.sh exists to prove the allowlist is sufficient. Run it
+# before every publish.

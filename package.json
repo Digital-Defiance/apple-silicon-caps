@@ -1,0 +1,87 @@
+{
+  "name": "@digitaldefiance/apple-silicon-caps",
+  "version": "0.1.0",
+  "description": "Honest three-state Apple Silicon hardware capability detection. Reports detected / not-present / undetectable with the evidence for each.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "apple-silicon-caps": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "gypfile": true,
+  "files": [
+    "dist",
+    "src",
+    "native",
+    "binding.gyp",
+    "prebuilds",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "install": "node-gyp-build",
+    "build": "npm run build:native && npm run build:ts",
+    "build:native": "node-gyp rebuild",
+    "build:ts": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist build",
+    "dump": "node scripts/dump.mjs",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepack": "npm run build:ts",
+    "verify:pack": "bash scripts/verify-pack.sh",
+    "cli": "node --experimental-strip-types src/cli.ts",
+    "publish:public": "npm publish --access public"
+  },
+  "keywords": [
+    "apple-silicon",
+    "arm64",
+    "sysctl",
+    "capability-detection",
+    "feature-detection",
+    "sme",
+    "neon",
+    "metal",
+    "iokit",
+    "m4"
+  ],
+  "author": "Digital Defiance, Jessica Mulein <jessica@digitaldefiance.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Digital-Defiance/apple-silicon-caps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Digital-Defiance/apple-silicon-caps/issues"
+  },
+  "homepage": "https://github.com/Digital-Defiance/apple-silicon-caps#readme",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64",
+    "x64"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "node-addon-api": "8.9.1",
+    "node-gyp-build": "4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.0",
+    "fast-check": "4.9.0",
+    "node-gyp": "11.4.2",
+    "prebuildify": "6.0.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}
