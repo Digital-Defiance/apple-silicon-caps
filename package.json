@@ -82,6 +82,6 @@
     "node-gyp": "11.4.2",
     "prebuildify": "6.0.1",
     "typescript": "5.9.3",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   }
 }
